@@ -28,7 +28,7 @@ public class PeopleController {
     }
 
     @GetMapping("/newnew")
-    public String newnew(){
+    public String newnew(@ModelAttribute("person") Person person){
         return "people/signup";
     }
 
@@ -47,7 +47,7 @@ public class PeopleController {
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
-            return "people/new";
+            return "people/signup";
 
         peopleService.save(person);
         return "redirect:/people";
