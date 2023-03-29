@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Users</title>
+    <link th:href="@{/index.css}" rel="stylesheet">
+</head>
+<body>
+<h1>View All Users</h1>
+<div class="card-container">
+    <div th:each="person : ${people}" class="card">
+        <div class="card-row">
+            <div class="card-label">Name:</div>
+            <div class="card-value" th:text="${person.getName()}"></div>
+        </div>
+        <div class="card-row">
+            <div class="card-label">Email:</div>
+            <div class="card-value" th:text="${person.getEmail()}"></div>
+        </div>
+        <div class="card-row">
+            <div class="card-label">Age:</div>
+            <div class="card-value" th:text="${person.getAge()}"></div>
+        </div>
+        <div class="card-row">
+            <div class="card-label">Phone Number:</div>
+            <div class="card-value" th:text="${person.getPhone()}"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
