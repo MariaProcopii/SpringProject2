@@ -28,6 +28,11 @@ public class PeopleController {
         return "people/index";
     }
 
+    @GetMapping("home")
+    public String home(){
+        return "people/home";
+    }
+
     @GetMapping("/signup")
     public String signup(@ModelAttribute("person") Person person){
         return "people/signup";
