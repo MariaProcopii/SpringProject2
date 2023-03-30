@@ -32,15 +32,21 @@ public class Person {
     @Column(name = "phone")
     private String phone;
 
+    @NotEmpty(message = "Password should not be empty")
+    @Size(min = 7, message = "Password should be greater than 7")
+    @Column(name = "password")
+    private String password;
+
     public Person() {
 
     }
 
-    public Person(String name, int age, String email, String phone) {
+    public Person(String name, int age, String email, String phone, String password) {
         this.name = name;
         this.age = age;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
     public int getId() {
@@ -81,6 +87,14 @@ public class Person {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

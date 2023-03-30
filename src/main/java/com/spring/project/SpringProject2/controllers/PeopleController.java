@@ -27,9 +27,14 @@ public class PeopleController {
         return "people/index";
     }
 
-    @GetMapping("/newnew")
-    public String newnew(@ModelAttribute("person") Person person){
+    @GetMapping("/signup")
+    public String signup(@ModelAttribute("person") Person person){
         return "people/signup";
+    }
+
+    @GetMapping("/login")
+    public String login(@ModelAttribute("person") Person person){
+        return "people/login";
     }
 
     @GetMapping("/{id}")
@@ -38,10 +43,20 @@ public class PeopleController {
         return "people/show";
     }
 
-    @GetMapping("/new")
-    public String newPerson(@ModelAttribute("person") Person person) {
-        return "people/new";
+    @GetMapping("login/confirm")
+    public String check(@ModelAttribute("person") Person person) {
+            if(peopleService.findOne(person.getEmail()) == null){
+                return "people/login";
+            }
+
+            Person person1 = peopleService.findOne(person.getEmail());
+            return "redirect:/people/" + person1.getId();
     }
+
+//    @GetMapping("/new")
+//    public String newPerson(@ModelAttribute("person") Person person) {
+//        return "people/new";
+//    }
 
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,

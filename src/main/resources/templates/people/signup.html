@@ -7,17 +7,17 @@
     <link th:href="@{/signup.css}" rel="stylesheet">
     <title>Registration Form Using HTML/CSS</title>
 </head>
-<body>
-<div id="photo">
+<body class="row">
+<div id="photo" class="column">
     <img th:src="@{/car-intro.png}"/>
 </div >
-<div id="container">
-    <!-- Form Wrap Start -->
+<div id="container" class="column">
+
     <div class="form-wrap">
         <h1>Sign Up</h1>
         <p>It's Free and Only takes a minute</p>
-        <!-- Form Start -->
-        <form th:method="POST" th:action="@{/people}" th:object="${person}">
+
+        <form th:method="POST" th:action="@{/people}" th:object="${person}" onsubmit ="return verifyPassword()">
             <div class="form-group">
                 <label for="name">Enter name:</label>
                 <input type="text" th:field="*{name}" id="name">
@@ -39,12 +39,14 @@
                 <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Phone Error</div>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" name="firstname" id="first-name">
+                <label for="password">Enter Password: </label>
+                <input type="password" th:field="*{password}" id="password"/>
+                <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
             </div>
             <div class="form-group">
-                <label for="cpass">Confirm Password</label>
-                <input type="password" name="firstname" id="first-name">
+                <label for="pswd">Confirm Password</label>
+                <input type="password" id = "pswd" value = "">
+                <div id = "message" style="color:red"> </div>
             </div>
             <button type="submit">Sign Up</button>
             <p class="bottom-text">
@@ -52,15 +54,22 @@
                 <a href="#">Term & Conditions</a> and <a href="#">Primary Policy</a>
             </p>
         </form>
-        <!-- Form Close -->
     </div>
-    <!-- Form Wrap Close -->
     <footer>
         <p>Already Have an Account? <a href="#">Login Here</a></p>
     </footer>
 </div>
-<!-- Container Close -->
+<script>
+    function verifyPassword() {
+        var pw1 = document.getElementById("password").value;
+        var pw2 = document.getElementById("pswd").value;
 
-
+        if(pw1 != pw2) {
+            document.getElementById("message").innerHTML = "Password should be equal";
+            return false;
+        }
+    }
+</script>
 </body>
 </html>
+

@@ -6,5 +6,5 @@ import com.spring.project.SpringProject2.models.Person;
 
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
-
+    Person findByEmail(String email);
 }

@@ -10,8 +10,20 @@
     display: flex;
 }
 
+@media (max-width: 900px) {
+    .row {
+        display: inline-grid;
+    }
+
+    img {
+        width: 370px;
+        height: 370px;
+    }
+}
+
 .column {
     flex: 50%;
+    min-width: 400px;
 }
 
 body{
@@ -25,13 +37,13 @@ a{
     text-decoration: none;
 }
 
-#photo{
-    width: 30%;
-    float:left;
-    max-width: 100%;
-    margin: 300px auto auto auto;
+img {
+    border-radius: 10px;
+    display: block;
+    margin: auto;
+    max-width:100%;
+    max-height:100%;
 }
-
 #container{
     margin: 30px 150px auto auto;
     max-width: 430px;
@@ -45,6 +57,10 @@ a{
     color: #333;
     border-top: 4px solid #e74c3c;
     border-radius: 05px;
+    max-width: 430px;
+    min-width: 430px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-wrap h1,
