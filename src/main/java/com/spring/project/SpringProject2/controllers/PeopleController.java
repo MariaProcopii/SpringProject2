@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/people")
@@ -45,12 +46,16 @@ public class PeopleController {
 
     @GetMapping("login/confirm")
     public String check(@ModelAttribute("person") Person person) {
-            if(peopleService.findOne(person.getEmail()) == null){
-                return "people/login";
-            }
-
-            Person person1 = peopleService.findOne(person.getEmail());
-            return "redirect:/people/" + person1.getId();
+        Person person1 = peopleService.findOne(person.getEmail());
+        if(person1 == null){
+            person.setEmail("");
+            return "people/login";
+        }
+        if(!person1.getPassword().equals(person.getPassword())){
+            person.setPassword("");
+            return "people/login";
+        }
+        return "redirect:/people/" + person1.getId();
     }
 
 //    @GetMapping("/new")

@@ -17,21 +17,39 @@
     <h1>Log In</h1>
     <p>Welcome Back!</p>
 
-    <form th:method="GET" th:action="@{/people/login/confirm}" th:object="${person}" >
+    <form th:method="GET" th:action="@{/people/login/confirm}" th:object="${person}" onsubmit ="return verify()">
       <div class="form-group">
         <label for="email">Enter email: </label>
         <input type="text" th:field="*{email}" id="email"/>
-        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
+        <div style="color:red" th:if="${person.getEmail() == ''}" >Invalid Email</div>
+        <div id = "error-email" style="color:red"> </div>
       </div>
       <div class="form-group">
         <label for="password">Enter Password: </label>
         <input type="password" th:field="*{password}" id="password"/>
-        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+        <div style="color:red" th:if="${person.getPassword() == ''}">Invalid Password</div>
+        <div id = "error-password" style="color:red"> </div>
       </div>
       <button type="submit">Log In</button>
     </form>
   </div>
 </div>
+<script>
+  function verify() {
+    var pw = document.getElementById("password").value;
+    var em = document.getElementById("email").value;
+
+    if(em == "") {
+      document.getElementById("error-email").innerHTML = "Email should not be empty";
+      return false;
+    }
+
+    if(pw == "") {
+      document.getElementById("error-password").innerHTML = "Password should not be empty";
+      return false;
+    }
+  }
+</script>
 </body>
 </html>
 
