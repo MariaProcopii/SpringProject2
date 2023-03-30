@@ -7,8 +7,8 @@
 }
 
 :root{
-    --main-color: rgb(48, 48, 48);
-    --bg-color: rgb(31, 31, 31);
+    --main-color: rgb(238, 82, 82);
+    --bg-color: rgb(167, 45, 60);
 }
 
 body{
@@ -17,10 +17,14 @@ body{
 }
 
 .sidebar{
-    width:240px;
+    width:85px;
     background-color: var(--main-color);
     height: 100vh;
     position: fixed;
+}
+
+.sidebar.active{
+    width: 240px;
 }
 
 .logo-content{
@@ -30,7 +34,7 @@ body{
 
 .logo-content .logo{
     color: #ffffff;
-    display: flex;
+    display: none;
     background-color: var(--bg-color);
     padding: 20px;
 }
@@ -78,14 +82,18 @@ body{
     font-size: 24px;
 }
 
-.sidebar ul li a i span{
+.sidebar ul li a span{
+    display: none;
+}
+
+.sidebar.active ul li a span{
     display: block;
 }
 
 .wrapper{
     position: relative;
-    left: 240px;
-    width: calc(100% - 240px);
+    left: 85px;
+    width: calc(100% - 85px);
     background-color: rgb(233, 233, 233);
     height: 100vh;
     padding: 20px;
