@@ -97,4 +97,6 @@ body{
     background-color: rgb(233, 233, 233);
     height: 100vh;
     padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link th:href="@{/home.css}" rel="stylesheet">
+    <link th:href="@{/infoCard.css}" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <title>Home Page</title>
 </head>
@@ -63,7 +64,49 @@
     </div>
 
     <div class="wrapper">
-        <p>Main Content</p>
+        <div class="card-container">
+            <div class="cards">
+                <div class="card-img">
+                    <img th:src="@{/proImage1.png}"/>
+                </div>
+                <div class="card-body">
+                    <h2>User Name</h2>
+                    <ul>
+                        <li>From: Chisinau</li>
+                        <li>To: Chisinau</li>
+                        <li>Date: 31/10/2002</li>
+                        <li>Time: 14:00</li>
+                        <li>Phone Nr: 069889092</li>
+                        <li>Price: 20 lei</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button>Book</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <div class="cards">
+                <div class="card-img">
+                    <img th:src="@{/proImage2.png}"/>
+                </div>
+                <div class="card-body">
+                    <h2>User Name</h2>
+                    <ul>
+                        <li>From: Chisinau</li>
+                        <li>To: Chisinau</li>
+                        <li>Date: 31/10/2002</li>
+                        <li>Time: 14:00</li>
+                        <li>Phone Nr: 069889092</li>
+                        <li>Price: 20 lei</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <button>Book</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="/script.js"></script>
