@@ -28,7 +28,7 @@ public class PeopleController {
         return "people/index";
     }
 
-    @GetMapping("home")
+    @GetMapping("/home")
     public String home(){
         return "people/home";
     }
@@ -49,8 +49,9 @@ public class PeopleController {
         return "people/show";
     }
 
-    @GetMapping("login/confirm")
+    @GetMapping("/login/confirm")
     public String check(@ModelAttribute("person") Person person) {
+
         Person person1 = peopleService.findOne(person.getEmail());
         if(person1 == null){
             person.setEmail("");
@@ -63,19 +64,15 @@ public class PeopleController {
         return "redirect:/people/" + person1.getId();
     }
 
-//    @GetMapping("/new")
-//    public String newPerson(@ModelAttribute("person") Person person) {
-//        return "people/new";
-//    }
-
-    @PostMapping()
+    @PostMapping("/signup/confirm")
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
+
         if (bindingResult.hasErrors())
             return "people/signup";
 
         peopleService.save(person);
-        return "redirect:/people";
+        return "redirect:/people/" + person.getId();
     }
 
     @GetMapping("/{id}/edit")

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/createRide.css}" rel="stylesheet">
+    <title>Registration Form Using HTML/CSS</title>
+</head>
+<body class="row">
+<div id="photo" class="column">
+    <div class="photozone">
+        <img th:src="@{/tl.png}"/>
+    </div>
+</div >
+<div id="container" class="column">
+
+    <div class="form-wrap">
+        <h1>Create Ride</h1>
+        <p>Plan your travel with us</p>
+
+        <form th:method="POST" th:action="@{/rides/confirm/{id}(id=${id})}" th:object="${ride}">
+            <div class="form-group">
+                <label for="destination_from">From:</label>
+                <input type="text" th:field="*{destination_from}" id="destination_from">
+                <div style="color:red" th:if="${#fields.hasErrors('destination_from')}" th:errors="*{destination_from}">From Error</div>
+            </div>
+            <div class="form-group">
+                <label for="destination_to">To: </label>
+                <input type="text" th:field="*{destination_to}" id="destination_to"/>
+                <div style="color:red" th:if="${#fields.hasErrors('destination_to')}" th:errors="*{destination_to}">To Error</div>
+            </div>
+            <div class="form-group">
+                <label for="date">Enter email: </label>
+                <input type="date" th:field="*{date}" id="date"/>
+                <div style="color:red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date Error</div>
+            </div>
+            <div class="form-group">
+                <label for="time">Enter Time: </label>
+                <input type="time" th:field="*{time}" id="time"/>
+                <div style="color:red" th:if="${#fields.hasErrors('time')}" th:errors="*{time}">Time Error</div>
+            </div>
+            <div class="form-group">
+                <label for="price">Enter Price: </label>
+                <input type="text" th:field="*{price}" id="price"/>
+                <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+            </div>
+            <button type="submit">Create Ride</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

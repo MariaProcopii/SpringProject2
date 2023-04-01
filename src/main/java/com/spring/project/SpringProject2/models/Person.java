@@ -1,10 +1,13 @@
 package com.spring.project.SpringProject2.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "Person")
@@ -36,6 +39,10 @@ public class Person {
     @Size(min = 7, message = "Password should be greater than 7")
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "owner")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<Ride> rides;
 
     public Person() {
 
