@@ -7,7 +7,9 @@
   <link th:href="@{/home.css}" rel="stylesheet">
     <link th:href="@{/infoCard.css}" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+    <title>Home Page</title>
 </head>
 <body>
     <div class="sidebar">
@@ -74,28 +76,33 @@
             <img class="logo_img" th:src="@{/logo_fig_removebg.png}">
             <span class="logo_name">Drive Buddy</span>
         </div>
-        <div class="card-container">
-            <div th:each="ride : ${rides}" class="cards">
-                <div class="card-img">
-                    <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
-                    <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
-                </div>
-                <div class="card-body">
-                    <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
-                    <ul>
-                        <li>From: <span th:text="${ride.getDestination_from()}">info</span></li>
-                        <li>To: <span th:text="${ride.getDestination_to()}">info</span></li>
-                        <li>Date: <span th:text="${ride.getDate()}">info</span></li>
-                        <li>Time: <span th:text="${ride.getTime()}">info</span></li>
-                        <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
-                        <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
-                    </ul>
-                </div>
-                <div class="card-footer">
-                    <button>Book</button>
+        <div class="all_rides_list">
+            <h2>Available Rides</h2>
+            <hr>
+            <div class="card-container">
+                <div th:each="ride : ${rides}" class="cards">
+                    <div class="card-img">
+                        <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
+                        <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
+                    </div>
+                    <div class="card-body">
+                        <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
+                        <ul>
+                            <li>From: <span th:text="${ride.getDestination_from()}">info</span></li>
+                            <li>To: <span th:text="${ride.getDestination_to()}">info</span></li>
+                            <li>Date: <span th:text="${ride.getDate()}">info</span></li>
+                            <li>Time: <span th:text="${ride.getTime()}">info</span></li>
+                            <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
+                            <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button>Book</button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="/script.js"></script>
 

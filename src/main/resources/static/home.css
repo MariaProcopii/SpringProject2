@@ -17,6 +17,7 @@ body{
 }
 
 .logo_drive_buddy{
+    position: sticky;
     display: block;
     text-align: center;
     margin: auto;
@@ -128,4 +129,10 @@ body{
 .card-container{
     display: flex;
     flex-wrap: wrap;
+}
+
+.all_rides_list{
+    font-family: 'poppins';
+    margin: 20px auto auto auto;
+    max-width: 1100px;
 }

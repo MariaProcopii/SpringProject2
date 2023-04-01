@@ -107,25 +107,29 @@
     </form>
   </div>
 
-  <div class="card-container">
-    <div th:each="ride : ${person.getRides()}" class="cards">
-      <div class="card-img">
-        <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
-        <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
-      </div>
-      <div class="card-body">
-        <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
-        <ul>
-          <li>From: <span th:text="${ride.getDestination_from()}">info</span></li>
-          <li>To: <span th:text="${ride.getDestination_to()}">info</span></li>
-          <li>Date: <span th:text="${ride.getDate()}">info</span></li>
-          <li>Time: <span th:text="${ride.getTime()}">info</span></li>
-          <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
-          <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
-        </ul>
-      </div>
-      <div class="card-footer">
-        <button>Book</button>
+  <div class="all_rides_list">
+    <h2>My Rides</h2>
+    <hr>
+    <div class="card-container">
+      <div th:each="ride : ${person.getRides()}" class="cards">
+        <div class="card-img">
+          <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
+          <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
+        </div>
+        <div class="card-body">
+          <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
+          <ul>
+            <li>From: <span th:text="${ride.getDestination_from()}">info</span></li>
+            <li>To: <span th:text="${ride.getDestination_to()}">info</span></li>
+            <li>Date: <span th:text="${ride.getDate()}">info</span></li>
+            <li>Time: <span th:text="${ride.getTime()}">info</span></li>
+            <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
+            <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <button>Book</button>
+        </div>
       </div>
     </div>
   </div>
