@@ -17,7 +17,6 @@ body{
 }
 
 .logo_drive_buddy{
-    position: sticky;
     display: block;
     text-align: center;
     margin: auto;
@@ -136,3 +135,9 @@ body{
     margin: 20px auto auto auto;
     max-width: 1100px;
 }
+
+/*.all_rides_list > h2:first-child{*/
+/*    top: 0;*/
+/*    position: sticky;*/
+/*    background-color: #ffffff;*/
+/*}*/

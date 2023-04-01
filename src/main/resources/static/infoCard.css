@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.card-footer button, .btn-delete:hover{
+.card-footer button:hover, .btn-delete:hover, .btn-edit:hover{
     transition: 0.3s;
     background-color: var(--main-color);
     color: #EDEFEE;
@@ -70,9 +70,7 @@
 }
 
 .btn-edit:hover{
-    transition: 0.3s;
     background-color: mediumseagreen;
-    color: #EDEFEE;
     border: none;
 }
 

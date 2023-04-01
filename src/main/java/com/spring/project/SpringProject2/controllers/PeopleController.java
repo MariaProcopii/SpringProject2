@@ -69,24 +69,20 @@ public class PeopleController {
         return "redirect:/rides/" + person.getId();
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", peopleService.findOne(id));
-        return "people/edit";
-    }
-
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult,
                          @PathVariable("id") int id) {
+
         if (bindingResult.hasErrors())
-            return "people/edit";
+            return "people/profile";
 
         peopleService.update(id, person);
-        return "redirect:/people";
+        return "redirect:/people/" + id;
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
+        System.out.println("jiiiiiiiiii");
         peopleService.delete(id);
         return "redirect:/people";
     }
