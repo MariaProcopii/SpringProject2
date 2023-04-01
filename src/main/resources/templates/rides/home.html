@@ -70,42 +70,25 @@
     </div>
 
     <div class="wrapper">
-        <div class="card-container">
-            <div class="cards">
-                <div class="card-img">
-                    <img th:src="@{/proImage1.png}"/>
-                </div>
-                <div class="card-body">
-                    <h2>User Name</h2>
-                    <ul>
-                        <li>From: Chisinau</li>
-                        <li>To: Chisinau</li>
-                        <li>Date: 31/10/2002</li>
-                        <li>Time: 14:00</li>
-                        <li>Phone Nr: 069889092</li>
-                        <li>Price: 20 lei</li>
-                    </ul>
-                </div>
-                <div class="card-footer">
-                    <button>Book</button>
-                </div>
-            </div>
+        <div class="logo_drive_buddy">
+            <img class="logo_img" th:src="@{/logo_fig_removebg.png}">
+            <span class="logo_name">Drive Buddy</span>
         </div>
-
         <div class="card-container">
-            <div class="cards">
+            <div th:each="ride : ${rides}" class="cards">
                 <div class="card-img">
-                    <img th:src="@{/proImage2.png}"/>
+                    <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
+                    <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
                 </div>
                 <div class="card-body">
-                    <h2>User Name</h2>
+                    <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
                     <ul>
-                        <li>From: Chisinau</li>
-                        <li>To: Chisinau</li>
-                        <li>Date: 31/10/2002</li>
-                        <li>Time: 14:00</li>
-                        <li>Phone Nr: 069889092</li>
-                        <li>Price: 20 lei</li>
+                        <li>From: <span th:text="${ride.getDestination_from()}">info</span></li>
+                        <li>To: <span th:text="${ride.getDestination_to()}">info</span></li>
+                        <li>Date: <span th:text="${ride.getDate()}">info</span></li>
+                        <li>Time: <span th:text="${ride.getTime()}">info</span></li>
+                        <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
+                        <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
                     </ul>
                 </div>
                 <div class="card-footer">
@@ -114,7 +97,6 @@
             </div>
         </div>
     </div>
-
     <script src="/script.js"></script>
 
 </body>

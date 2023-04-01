@@ -28,9 +28,11 @@ public class RideController {
 
     @GetMapping("/{id}")
     public String home(@PathVariable("id") int id, Model model){
+
         String name = peopleService.findOne(id).getName();
         model.addAttribute("name", name);
         model.addAttribute("id", id);
+        model.addAttribute("rides", rideService.findAll());
         return "rides/home";
     }
 
