@@ -38,9 +38,9 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String profile(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", peopleService.findOne(id));
-        return "people/show";
+        return "people/profile";
     }
 
     @GetMapping("/login/confirm")

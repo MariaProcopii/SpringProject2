@@ -40,7 +40,7 @@
     list-style: none;
 }
 
-.card-footer button{
+.card-footer button, .btn-edit, .btn-delete{
     appearance: none;
     background-color: transparent;
     border: 2px solid #1A1A1A;
@@ -51,6 +51,7 @@
     font-size: 16px;
     font-weight: 600;
     min-height: 60px;
+    max-width: 450px;
     text-align: center;
     width: 80%;
     display: block;
@@ -61,9 +62,16 @@
     cursor: pointer;
 }
 
-.card-footer button:hover{
+.card-footer button, .btn-delete:hover{
     transition: 0.3s;
     background-color: var(--main-color);
+    color: #EDEFEE;
+    border: none;
+}
+
+.btn-edit:hover{
+    transition: 0.3s;
+    background-color: mediumseagreen;
     color: #EDEFEE;
     border: none;
 }

@@ -121,7 +121,6 @@ body{
     position: relative;
     left: 85px;
     width: calc(100% - 85px);
-    background-color: rgb(233, 233, 233);
     height: 100vh;
     padding: 20px;
 }
