@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/rides")
@@ -25,29 +26,37 @@ public class RideController {
         this.peopleService = peopleService;
     }
 
-    @GetMapping("/createRide/{id}")
+    @GetMapping("/{id}")
+    public String home(@PathVariable("id") int id, Model model){
+        String name = peopleService.findOne(id).getName();
+        model.addAttribute("name", name);
+        model.addAttribute("id", id);
+        return "rides/home";
+    }
+
+    @GetMapping("/createRide/{id_v}")
     public String createRide(@ModelAttribute("ride") Ride ride,
-                             @PathVariable("id") int id,
+                             @PathVariable("id_v") int id,
                              Model model){
 
-        model.addAttribute("id", id);
+        model.addAttribute("id_v", id);
         return "/rides/createRide";
     }
 
-    @PostMapping("/confirm/{id}")
+    @PostMapping("/confirm/{id_v}")
     public String create(@ModelAttribute("ride") @Valid Ride ride,
                          BindingResult bindingResult, Model model,
-                         @PathVariable("id") int id) {
+                         @PathVariable("id_v") int id) {
 
         if (bindingResult.hasErrors()){
-            model.addAttribute("id", id);
+            model.addAttribute("id_v", id);
             return "rides/createRide";
         }
 
         Person person = peopleService.findOne(id);
+        System.out.println(ride);
         ride.setOwner(person);
-
         rideService.save(ride);
-        return "redirect:/people";
+        return "redirect:/rides/" + id;
     }
 }

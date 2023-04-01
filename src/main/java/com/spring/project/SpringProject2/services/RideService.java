@@ -26,5 +26,4 @@ public class RideService {
     public void save(Ride ride) {
         rideRepository.save(ride);
     }
-
 }

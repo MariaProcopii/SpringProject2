@@ -107,4 +107,17 @@ public class Ride {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Ride{" +
+                "id=" + id +
+                ", owner=" + owner +
+                ", destination_from='" + destination_from + '\'' +
+                ", destination_to='" + destination_to + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

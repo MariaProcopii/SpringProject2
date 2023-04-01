@@ -14,7 +14,7 @@
 
         <div class="logo-content">
             <div class="logo">
-                <h3 class="logo-name">
+                <h3 class="logo-name" th:text="${name}">
                     dashwork
                 </h3>
             </div>
@@ -24,7 +24,7 @@
         </div>
         <ul class="nav">
             <li>
-                <a href="#">
+                <a th:href="@{/rides/{id}(id=${id})}">
                     <i class='bx bxs-home' ></i>
                     <span>Home</span>
                 </a>
@@ -36,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/rides/createRide/{id}(id=${id})}">
                     <i class='bx bx-task'></i>
                     <span>Create ride</span>
                 </a>

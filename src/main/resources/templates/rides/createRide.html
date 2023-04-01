@@ -19,7 +19,7 @@
         <h1>Create Ride</h1>
         <p>Plan your travel with us</p>
 
-        <form th:method="POST" th:action="@{/rides/confirm/{id}(id=${id})}" th:object="${ride}">
+        <form th:method="POST" th:action="@{/rides/confirm/{id}(id=${id_v})}" th:object="${ride}">
             <div class="form-group">
                 <label for="destination_from">From:</label>
                 <input type="text" th:field="*{destination_from}" id="destination_from">

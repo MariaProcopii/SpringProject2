@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/people")
@@ -26,11 +25,6 @@ public class PeopleController {
     public String index(Model model) {
         model.addAttribute("people", peopleService.findAll());
         return "people/index";
-    }
-
-    @GetMapping("/home")
-    public String home(){
-        return "people/home";
     }
 
     @GetMapping("/signup")
@@ -61,7 +55,7 @@ public class PeopleController {
             person.setPassword("");
             return "people/login";
         }
-        return "redirect:/people/" + person1.getId();
+        return "redirect:/rides/" + person1.getId();
     }
 
     @PostMapping("/signup/confirm")
@@ -72,7 +66,7 @@ public class PeopleController {
             return "people/signup";
 
         peopleService.save(person);
-        return "redirect:/people/" + person.getId();
+        return "redirect:/rides/" + person.getId();
     }
 
     @GetMapping("/{id}/edit")
