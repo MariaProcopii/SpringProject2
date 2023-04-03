@@ -30,4 +30,9 @@ public class RideService {
     public List<Ride> findAll() {
         return rideRepository.findAll();
     }
+
+    public Ride findOne(int id){
+        Optional<Ride> foundRide = rideRepository.findById(id);
+        return foundRide.orElse(null);
+    }
 }

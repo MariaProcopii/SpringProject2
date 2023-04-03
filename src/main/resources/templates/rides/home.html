@@ -97,7 +97,11 @@
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <button>Book</button>
+                        <form th:method="POST" th:action="@{/rides/book}">
+                            <input type="hidden" name="id_person" th:value="${id}" />
+                            <input type="hidden" name="id_ride" th:value="${ride.getId()}" />
+                            <button type="submit">Book</button>
+                        </form>
                     </div>
                 </div>
             </div>

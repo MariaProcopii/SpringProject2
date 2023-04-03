@@ -56,9 +56,22 @@ public class RideController {
         }
 
         Person person = peopleService.findOne(id);
-        System.out.println(ride);
         ride.setOwner(person);
         rideService.save(ride);
         return "redirect:/rides/" + id;
+    }
+
+    @PostMapping("/book")
+    public String bookRide(@RequestParam("id_person") int id_person,
+                           @RequestParam("id_ride") int id_ride){
+        System.out.println(id_ride + " " + id_person + "llllllllll");
+        Person person = peopleService.findOne(id_person);
+        Ride ride = rideService.findOne(id_ride);
+
+        person.getBookedRides().add(ride);
+        ride.getPassengers().add(person);
+
+        rideService.save(ride);
+        return "redirect:/people";
     }
 }

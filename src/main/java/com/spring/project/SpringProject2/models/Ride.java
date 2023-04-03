@@ -1,9 +1,12 @@
 package com.spring.project.SpringProject2.models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "ride")
@@ -39,6 +42,10 @@ public class Ride {
     @NotNull(message = "Enter a fee fro the driver")
     @Min(value = 0, message = "Price should be greater than 0")
     private int price;
+
+    @ManyToMany(mappedBy = "bookedRides")
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    private List<Person> passengers;
 
     public Ride() {
 
@@ -106,6 +113,14 @@ public class Ride {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public List<Person> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Person> passengers) {
+        this.passengers = passengers;
     }
 
     @Override

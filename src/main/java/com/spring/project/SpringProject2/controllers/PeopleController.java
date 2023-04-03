@@ -82,7 +82,6 @@ public class PeopleController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        System.out.println("jiiiiiiiiii");
         peopleService.delete(id);
         return "redirect:/people";
     }

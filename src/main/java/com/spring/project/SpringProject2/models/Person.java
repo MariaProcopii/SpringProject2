@@ -47,6 +47,15 @@ public class Person {
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<Ride> rides;
 
+    @ManyToMany
+    @JoinTable(
+            name = "person_ride",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "ride_id")
+    )
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    private List<Ride> bookedRides;
+
     public Person() {
 
     }
@@ -121,6 +130,14 @@ public class Person {
 
     public void setRides(List<Ride> rides) {
         this.rides = rides;
+    }
+
+    public List<Ride> getBookedRides() {
+        return bookedRides;
+    }
+
+    public void setBookedRides(List<Ride> bookedRides) {
+        this.bookedRides = bookedRides;
     }
 
     @Override
