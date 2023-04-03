@@ -29,10 +29,11 @@ public class RideController {
     @GetMapping("/{id}")
     public String home(@PathVariable("id") int id, Model model){
 
-        String name = peopleService.findOne(id).getName();
-        model.addAttribute("name", name);
+        Person person = peopleService.findOne(id);
+        model.addAttribute("name", person.getName());
         model.addAttribute("id", id);
-        model.addAttribute("rides", rideService.findAll());
+        model.addAttribute("rides", rideService.findNotBooked(person));
+
         return "rides/home";
     }
 
@@ -43,6 +44,14 @@ public class RideController {
 
         model.addAttribute("id_v", id);
         return "/rides/createRide";
+    }
+
+    @GetMapping("/currentRide/{id}")
+    public String currentRide(@PathVariable("id") int id,
+                             Model model){
+
+        model.addAttribute("person", peopleService.findOne(id));
+        return "/rides/currentRide";
     }
 
     @PostMapping("/confirm/{id_v}")
@@ -64,14 +73,15 @@ public class RideController {
     @PostMapping("/book")
     public String bookRide(@RequestParam("id_person") int id_person,
                            @RequestParam("id_ride") int id_ride){
-        System.out.println(id_ride + " " + id_person + "llllllllll");
+
         Person person = peopleService.findOne(id_person);
         Ride ride = rideService.findOne(id_ride);
 
         person.getBookedRides().add(ride);
         ride.getPassengers().add(person);
+        ride.setAvailableSeats(1);
 
         rideService.save(ride);
-        return "redirect:/people";
+        return "redirect:/rides/" + id_person;
     }
 }

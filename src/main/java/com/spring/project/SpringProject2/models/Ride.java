@@ -43,6 +43,10 @@ public class Ride {
     @Min(value = 0, message = "Price should be greater than 0")
     private int price;
 
+    @Column(name = "available_seats")
+    @NotNull(message = "Enter available seats in your car")
+    private int availableSeats;
+
     @ManyToMany(mappedBy = "bookedRides")
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
     private List<Person> passengers;
@@ -113,6 +117,14 @@ public class Ride {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(int booked) {
+        this.availableSeats -= booked;
     }
 
     public List<Person> getPassengers() {

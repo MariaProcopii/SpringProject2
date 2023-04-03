@@ -45,6 +45,11 @@
                 <input type="text" th:field="*{price}" id="price"/>
                 <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
             </div>
+            <div class="form-group">
+                <label for="availableSeats">Enter Available Seats: </label>
+                <input type="text" th:field="*{availableSeats}" id="availableSeats"/>
+                <div style="color:red" th:if="${#fields.hasErrors('availableSeats')}" th:errors="*{availableSeats}">Price Error</div>
+            </div>
             <button type="submit">Create Ride</button>
         </form>
     </div>

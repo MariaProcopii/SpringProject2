@@ -32,9 +32,9 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a th:href="@{/rides/currentRide/{id}(id=${id})}">
                     <i class='bx bx-map' ></i>
-                    <span>Current ride</span>
+                    <span>Booked Rides</span>
                 </a>
             </li>
             <li>
@@ -94,6 +94,7 @@
                             <li>Time: <span th:text="${ride.getTime()}">info</span></li>
                             <li>Phone Nr: <span th:text="${ride.getOwner().getPhone()}">info</span></li>
                             <li>Price: <span th:text="${ride.getPrice()}">info</span> lei</li>
+                            <li>Available seats: <span th:text="${ride.getAvailableSeats()}">info</span></li>
                         </ul>
                     </div>
                     <div class="card-footer">
