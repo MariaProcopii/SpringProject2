@@ -35,11 +35,21 @@ public class RideService {
         return foundRide.orElse(null);
     }
 
-//    public void setOwner(Person person){
-//
-//    }
+    @Transactional
+    public void createRide(Person person, Ride ride){
+        ride.setOwner(person);
+        save(ride);
+    }
 
     public List<Ride> findNotBooked(Person owner) {
         return rideRepository.findByOwnerNotAndAvailableSeatsGreaterThan(owner, 0);
+    }
+
+    @Transactional
+    public void bookRide(Person person, Ride ride){
+        person.setBookedRides(ride);
+        ride.setPassengers(person);
+        ride.resetAvailableSeats(1);
+        save(ride);
     }
 }

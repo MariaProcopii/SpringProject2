@@ -123,7 +123,11 @@ public class Ride {
         return availableSeats;
     }
 
-    public void setAvailableSeats(int booked) {
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    public void resetAvailableSeats(int booked) {
         this.availableSeats -= booked;
     }
 
@@ -131,8 +135,8 @@ public class Ride {
         return passengers;
     }
 
-    public void setPassengers(List<Person> passengers) {
-        this.passengers = passengers;
+    public void setPassengers(Person person) {
+        passengers.add(person);
     }
 
     @Override

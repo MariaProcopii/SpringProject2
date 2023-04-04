@@ -65,8 +65,8 @@ public class RideController {
         }
 
         Person person = peopleService.findOne(id);
-        ride.setOwner(person);
-        rideService.save(ride);
+        rideService.createRide(person, ride);
+        
         return "redirect:/rides/" + id;
     }
 
@@ -76,12 +76,8 @@ public class RideController {
 
         Person person = peopleService.findOne(id_person);
         Ride ride = rideService.findOne(id_ride);
+        rideService.bookRide(person, ride);
 
-        person.getBookedRides().add(ride);
-        ride.getPassengers().add(person);
-        ride.setAvailableSeats(1);
-
-        rideService.save(ride);
         return "redirect:/rides/" + id_person;
     }
 }

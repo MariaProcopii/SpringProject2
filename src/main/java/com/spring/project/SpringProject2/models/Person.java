@@ -136,8 +136,8 @@ public class Person {
         return bookedRides;
     }
 
-    public void setBookedRides(List<Ride> bookedRides) {
-        this.bookedRides = bookedRides;
+    public void setBookedRides(Ride bookedRide) {
+        bookedRides.add(bookedRide);
     }
 
     @Override
