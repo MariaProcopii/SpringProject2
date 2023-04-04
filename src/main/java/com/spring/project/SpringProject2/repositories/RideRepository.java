@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface RideRepository extends JpaRepository<Ride, Integer> {
     @Query("SELECT r FROM Ride r WHERE r.owner.id <> :id AND :person NOT MEMBER OF r.passengers AND r.availableSeats > 0")
-    List<Ride> findRidesByPersonIdNotInPassengers(@Param("id") int id, @Param("person") Person person);
+    List<Ride> findSuitableRides(@Param("id") int id, @Param("person") Person person);
 }

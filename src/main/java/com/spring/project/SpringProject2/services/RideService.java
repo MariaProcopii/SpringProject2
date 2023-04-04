@@ -46,6 +46,6 @@ public class RideService {
     }
 
     public List<Ride> findRides(int id, Person person) {
-        return rideRepository.findRidesByPersonIdNotInPassengers(id, person);
+        return rideRepository.findSuitableRides(id, person);
     }
 }
