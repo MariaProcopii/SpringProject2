@@ -73,7 +73,7 @@
 
     <div class="wrapper">
         <div class="logo_drive_buddy">
-            <img class="logo_img" th:src="@{/logo_fig_removebg.png}">
+            <img class="logo_img" th:src="@{/images/logo_fig_removebg.png}">
             <span class="logo_name">Drive Buddy</span>
         </div>
         <div class="all_rides_list">
@@ -82,8 +82,8 @@
             <div class="card-container">
                 <div th:each="ride : ${rides}" class="cards">
                     <div class="card-img">
-                        <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage1.png}"/>
-                        <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/proImage2.png}"/>
+                        <img th:if="${ride.getOwner().getGender() == 'M'}" th:src="@{/images/proImage1.png}"/>
+                        <img th:unless="${ride.getOwner().getGender() == 'M'}" th:src="@{/images/proImage2.png}"/>
                     </div>
                     <div class="card-body">
                         <h2 th:text="${ride.getOwner().getName()}">User Name</h2>
