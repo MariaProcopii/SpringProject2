@@ -32,7 +32,7 @@ public class RideController {
         Person person = peopleService.findOne(id);
         model.addAttribute("name", person.getName());
         model.addAttribute("id", id);
-        model.addAttribute("rides", rideService.findNotBooked(person));
+        model.addAttribute("rides", rideService.findRides(id, person));
 
         return "rides/home";
     }
@@ -66,7 +66,7 @@ public class RideController {
 
         Person person = peopleService.findOne(id);
         rideService.createRide(person, ride);
-        
+
         return "redirect:/rides/" + id;
     }
 
