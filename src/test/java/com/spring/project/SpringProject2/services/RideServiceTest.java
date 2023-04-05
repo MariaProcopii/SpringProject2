@@ -4,6 +4,8 @@ import com.spring.project.SpringProject2.repositories.RideRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import java.util.*;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,6 +47,18 @@ class RideServiceTest {
         Ride ride = new Ride();
         rideService.createRide(person, ride);
         verify(rideRepository, times(1)).save(ride);
+    }
+
+    @Test
+    void testFindRides() {
+        int id = 1;
+        Person person = new Person();
+        Ride ride = new Ride();
+        ride.setId(id);
+        List<Ride> rides = Arrays.asList(ride);
+        when(rideRepository.findSuitableRides(id, person)).thenReturn(rides);
+        List<Ride> foundRides = rideService.findRides(id, person);
+        assertEquals(foundRides, rides);
     }
 }
 
