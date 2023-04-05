@@ -2,7 +2,11 @@ package com.spring.project.SpringProject2.services;
 
 import com.spring.project.SpringProject2.models.Person;
 import com.spring.project.SpringProject2.repositories.PeopleRepository;
+import com.spring.project.SpringProject2.security.PersonDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
-public class PeopleService {
+public class PeopleService implements UserDetailsService {
 
     private final PeopleRepository peopleRepository;
 
@@ -30,7 +34,7 @@ public class PeopleService {
     }
 
     public Person findOne(String email) {
-        Optional<Person> foundPerson = Optional.ofNullable(peopleRepository.findByEmail(email));
+        Optional<Person> foundPerson = peopleRepository.findByEmail(email);
         return foundPerson.orElse(null);
     }
 
@@ -48,5 +52,15 @@ public class PeopleService {
     @Transactional
     public void delete(int id) {
         peopleRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Person> person = peopleRepository.findByEmail(email);
+
+        if(person.isEmpty()){
+            throw new UsernameNotFoundException("User not found!");
+        }
+        return new PersonDetails(person.get());
     }
 }

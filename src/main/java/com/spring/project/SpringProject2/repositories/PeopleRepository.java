@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.spring.project.SpringProject2.models.Person;
 
+import java.util.Optional;
+
 @Repository
 public interface PeopleRepository extends JpaRepository<Person, Integer> {
-    Person findByEmail(String email);
+    Optional<Person> findByEmail(String email);
 }
