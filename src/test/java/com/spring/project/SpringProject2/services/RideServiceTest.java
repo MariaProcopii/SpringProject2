@@ -1,5 +1,5 @@
 package com.spring.project.SpringProject2.services;
-import com.spring.project.SpringProject2.models.Ride;
+import com.spring.project.SpringProject2.models.*;
 import com.spring.project.SpringProject2.repositories.RideRepository;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
@@ -37,6 +37,14 @@ class RideServiceTest {
         when(rideRepository.findById(id)).thenReturn(Optional.of(ride));
         Ride foundRide = rideService.findOne(id);
         assertEquals(foundRide, ride);
+    }
+
+    @Test
+    void testCreateRide() {
+        Person person = new Person();
+        Ride ride = new Ride();
+        rideService.createRide(person, ride);
+        verify(rideRepository, times(1)).save(ride);
     }
 }
 
