@@ -43,20 +43,20 @@ public class PeopleController {
         return "people/profile";
     }
 
-    @GetMapping("/login/confirm")
-    public String check(@ModelAttribute("person") Person person) {
-
-        Person person1 = peopleService.findOne(person.getEmail());
-        if(person1 == null){
-            person.setEmail("");
-            return "people/login";
-        }
-        if(!person1.getPassword().equals(person.getPassword())){
-            person.setPassword("");
-            return "people/login";
-        }
-        return "redirect:/rides/" + person1.getId();
-    }
+//    @GetMapping("/login/confirm")
+//    public String check(@ModelAttribute("person") Person person) {
+//
+//        Person person1 = peopleService.findOne(person.getEmail());
+//        if(person1 == null){
+//            person.setEmail("");
+//            return "people/login";
+//        }
+//        if(!person1.getPassword().equals(person.getPassword())){
+//            person.setPassword("");
+//            return "people/login";
+//        }
+//        return "redirect:/rides/" + person1.getId();
+//    }
 
     @PostMapping("/signup/confirm")
     public String create(@ModelAttribute("person") @Valid Person person,
@@ -66,7 +66,9 @@ public class PeopleController {
             return "people/signup";
 
         peopleService.save(person);
-        return "redirect:/rides/" + person.getId();
+//        return "redirect:/rides/" + person.getId();
+        return "redirect:/login";
+
     }
 
     @PatchMapping("/{id}")

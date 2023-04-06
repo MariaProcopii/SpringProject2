@@ -2,9 +2,12 @@ package com.spring.project.SpringProject2.controllers;
 
 import com.spring.project.SpringProject2.models.Person;
 import com.spring.project.SpringProject2.models.Ride;
+import com.spring.project.SpringProject2.security.PersonDetails;
 import com.spring.project.SpringProject2.services.PeopleService;
 import com.spring.project.SpringProject2.services.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,13 +27,16 @@ public class RideController {
         this.peopleService = peopleService;
     }
 
-    @GetMapping("/{id}")
-    public String home(@PathVariable("id") int id, Model model){
+    @GetMapping("")
+    public String home(Model model){
 
-        Person person = peopleService.findOne(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person person = personDetails.getPerson();
+
         model.addAttribute("name", person.getName());
-        model.addAttribute("id", id);
-        model.addAttribute("rides", rideService.findRides(id, person));
+        model.addAttribute("id", person.getId());
+        model.addAttribute("rides", rideService.findRides(person.getId(), person));
 
         return "rides/home";
     }
@@ -46,7 +52,7 @@ public class RideController {
 
     @GetMapping("/currentRide/{id}")
     public String currentRide(@PathVariable("id") int id,
-                             Model model){
+                              Model model){
 
         model.addAttribute("person", peopleService.findOne(id));
         return "/rides/currentRide";
@@ -76,6 +82,6 @@ public class RideController {
         Ride ride = rideService.findOne(id_ride);
         rideService.bookRide(person, ride);
 
-        return "redirect:/rides/" + id_person;
+        return "redirect:/rides";
     }
 }
