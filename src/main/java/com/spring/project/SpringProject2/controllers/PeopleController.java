@@ -34,7 +34,7 @@ public class PeopleController {
 
     @GetMapping("/login")
     public String login(@ModelAttribute("person") Person person){
-        return "people/login";
+        return "people/login2";
     }
 
     @GetMapping("/{id}")

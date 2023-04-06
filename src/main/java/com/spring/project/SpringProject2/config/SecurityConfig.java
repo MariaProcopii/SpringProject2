@@ -26,12 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/people/signup","/people/signup/confirm", "/people/login", "/error", "/authorization/**", "/images/**")
+                .antMatchers("/people/signup",
+                                        "/people/login",
+                                        "/people/login/confirm",
+                                        "/people/signup/confirm",
+                                        "/error",
+                                        "/authorization/**",
+                                        "/images/**")
                 .permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .formLogin()
+                .loginPage("/people/login")
+                .loginProcessingUrl("/people/login/confirm")
                 .defaultSuccessUrl("/rides", true)
+                .failureUrl("/people/login?error")
                 .permitAll();
     }
 
