@@ -71,7 +71,7 @@ public class RideController {
         Person person = peopleService.findOne(id);
         rideService.createRide(person, ride);
 
-        return "redirect:/rides/" + id;
+        return "redirect:/rides";
     }
 
     @PostMapping("/book")
